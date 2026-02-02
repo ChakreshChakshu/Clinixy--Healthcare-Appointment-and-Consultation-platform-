@@ -9,15 +9,6 @@ app.use(cors({
 }));
 app.use(express.json());
 
-app.get("/health", (req, res) => {
-  res.json({ status: "Clinixy backend running" });
 
-    
-});
-app.get("/api/health", (req, res) => {
-  res.json({
-    status: "Clinixy backend is running",
-  });
-});
 
 export default app;
