@@ -4,7 +4,7 @@ export const IsAuth=async(req,res,next)=>{
     try {
         const authHeader=req.headers.authorization
         if (!authHeader) {
-            return res.status(400).json({message:"no Access Token"})
+            return res.status(401).json({message:"no Access Token"})
         }
         const token=authHeader.split(" ")[1]
         const decode=await jwt.verify(token,process.env.ACCESS_SECRET_KEY)
@@ -15,9 +15,9 @@ export const IsAuth=async(req,res,next)=>{
         }
         req.user={
             _id:user._id,
-            name:user._name,
+            name:user.name,
             email:user.email,
-            role:user._role
+            role:user.role
         }
         next()
     } catch (error) {

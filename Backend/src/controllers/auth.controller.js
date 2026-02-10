@@ -7,9 +7,9 @@ try {
     const {email,password}=req.body
     const {error}=loginValidation(req.body)
     if (error) {
-        return res.status(400).json({message:error})
+        return res.status(401).json({message:error})
     }
-    
+
 const data=await loginService(email,password)
 
     
