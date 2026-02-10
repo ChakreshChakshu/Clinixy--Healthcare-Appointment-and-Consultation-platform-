@@ -1,1 +1,27 @@
-// Auth middleware
+import jwt from "jsonwebtoken"
+import UserModel from "../models/User.model"
+export const IsAuth=async(req,res,next)=>{
+    try {
+        const authHeader=req.headers.authorization
+        if (!authHeader) {
+            return res.status(400).json({message:"no Access Token"})
+        }
+        const token=authHeader.split(" ")[1]
+        const decode=await jwt.verify(token,process.env.ACCESS_SECRET_KEY)
+        const user=await UserModel.findById(decode.userId)
+        if (!user) {
+            return res.status(400).json({message:"unthorization"})
+            
+        }
+        req.user={
+            _id:user._id,
+            name:user._name,
+            email:user.email,
+            role:user._role
+        }
+        next()
+    } catch (error) {
+        console.log(error);
+        return res.status(401).json({message:"Token Expired"})
+    }
+}
