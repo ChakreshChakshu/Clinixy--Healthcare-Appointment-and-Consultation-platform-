@@ -5,7 +5,6 @@ import { authRouter } from "./routes/auth.routes.js";
 import { ErrorMiddleware } from "./middlewares/error.middleware.js";
 
 
-
 const app = express();
 
 app.use(cors({
