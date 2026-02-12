@@ -12,14 +12,21 @@ const doctorSchema = new mongoose.Schema(
 
     experienceYears: Number,
 
-    clinicId: {
+    clinicId: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: "Clinic"
+    }],
+
+    education: { type: String, required: true },
+    discription: { type: String, required: true },
+    role: {
+      type: String,
+      default: "DOCTOR"
     },
 
     isVerified: {
       type: Boolean,
-      default: false
+      default: true
     }
   },
   { timestamps: true }

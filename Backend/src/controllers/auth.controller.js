@@ -28,7 +28,6 @@ const data=await loginService(email,password)
 
 export const register = async (req, res,next) =>{
     try {
-        console.log("inside register");
         const {name, email, password} = req.body;
 
         const hashedPassword = await PasswordUtils.hashPassword(password);
