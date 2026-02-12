@@ -10,7 +10,7 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const {loginUser}=useAuth()
+  const {loginUser,loading}=useAuth()
   const [errors, setErrors] = useState({});
 
   const loginFeatures = [
@@ -94,9 +94,21 @@ const Login = () => {
               {errors.password && <p className="text-[10px] text-[#EF4444] font-bold ml-2 uppercase tracking-tight">{errors.password}</p>}
             </div>
 
-            <button type="submit" className="w-full bg-[#2563EB] text-white py-5 rounded-[22px] font-bold text-lg flex items-center justify-center gap-3 shadow-xl shadow-blue-500/10 active:scale-[0.98] transition-all">
-              Sign In <ArrowRight size={20} />
-            </button>
+            <button
+                         type="submit"
+                         disabled={loading}
+                         className="w-full bg-[#2563EB] text-white py-5 rounded-[22px] font-bold text-lg 
+             flex items-center justify-center gap-3 hover:bg-blue-700 transition-all 
+             shadow-xl shadow-blue-500/10 active:scale-[0.98] mt-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                       >
+                         {loading ? (
+                           <div className="w-6 h-6 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+                         ) : (
+                           <>
+                             Sign In <ArrowRight size={20} />
+                           </>
+                         )}
+                       </button>
           </form>
 
           <div className="mt-12 text-center border-t border-gray-100 pt-8">

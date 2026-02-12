@@ -7,7 +7,7 @@ import { useAuth } from '../../context/AuthContext';
 const Register = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [showPassword, setShowPassword] = useState(false);
-  const { registerUser } = useAuth()
+  const { registerUser, loading } = useAuth()
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -41,12 +41,12 @@ const Register = () => {
 
     await registerUser(formData);
 
-    
+
   };
 
   return (
     <div className="h-screen w-full flex overflow-hidden font-sans bg-[#F8FAFC] relative">
-      
+
       <motion.div
         layoutId="auth-slider"
         transition={{ type: "spring", stiffness: 120, damping: 20 }}
@@ -150,9 +150,22 @@ const Register = () => {
               {errors.password && <p className="text-[10px] text-[#EF4444] font-bold ml-2 uppercase tracking-tight">{errors.password}</p>}
             </div>
 
-            <button type="submit" className="w-full bg-[#2563EB] text-white py-5 rounded-[22px] font-bold text-lg flex items-center justify-center gap-3 hover:bg-blue-700 transition-all shadow-xl shadow-blue-500/10 active:scale-[0.98] mt-2">
-              Get Started <ArrowRight size={20} />
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-[#2563EB] text-white py-5 rounded-[22px] font-bold text-lg 
+  flex items-center justify-center gap-3 hover:bg-blue-700 transition-all 
+  shadow-xl shadow-blue-500/10 active:scale-[0.98] mt-2 disabled:opacity-70 disabled:cursor-not-allowed"
+            >
+              {loading ? (
+                <div className="w-6 h-6 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+              ) : (
+                <>
+                  Get Started <ArrowRight size={20} />
+                </>
+              )}
             </button>
+
           </form>
 
           <div className="mt-10 text-center border-t border-gray-100 pt-8">
