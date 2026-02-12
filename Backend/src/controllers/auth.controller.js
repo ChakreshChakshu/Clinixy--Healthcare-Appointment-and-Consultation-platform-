@@ -3,6 +3,8 @@ import PasswordUtils from "../utils/password.js";
 
 export const register = async (req, res) =>{
     try {
+
+        console.log("inside register controller");
         const {name, email, password} = req.body;
 
         const hashedPassword = await PasswordUtils.hashPassword(password);
