@@ -32,8 +32,12 @@ export const validateRegister = (data) =>{
             return {error:"Invalid email address format"}
     }
 
-    if(password.length < 6){
-            return {error:"Password must be at least 6 characters"}
+    const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    if (!strongPasswordRegex.test(password)) {
+        return res.status(400).json({ 
+            message: "Password weak hai! Password must be at least 8 characters long, include an uppercase letter, a number, and a special character (@$!%*?&)." 
+        });
     }
     return {error:null}
 }
