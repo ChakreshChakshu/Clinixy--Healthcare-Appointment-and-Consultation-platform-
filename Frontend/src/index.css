@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+
+@theme {
+  --color-primary: #0f172a;
+  --color-accent: #10b981;
+  --color-surface: #f8fafc;
+  --color-graphite: #1e293b;
+  
+  --transition-theme: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@variant dark (&:where(.dark, .dark *));
+
+:root {
+  background-color: #ffffff;
+  color: #000;
+}
+
+.dark {
+  background-color: #000;
+  color: #ffffff;
+}
