@@ -1,8 +1,18 @@
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import Login from "../pages/auth/login";
+import Register from "../pages/auth/register";
 
-import Login from "../pages/auth/Login";
-import Register from "../pages/auth/Register";
+
+
+import BookAppointment from "../pages/patient/BookAppointment";
+
+
+
+
+
+
+
 
 const AppRoutes = () => {
   const location = useLocation();
@@ -16,6 +26,9 @@ const AppRoutes = () => {
 
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+      
+        <Route path="/BookAppointment" element={<BookAppointment />} />
+        
       </Routes>
     </AnimatePresence>
   );
