@@ -16,10 +16,10 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api/auth",authRouter)
-app.use(ErrorMiddleware)
 
 app.use("/api/clinic", clinicRouter);
 app.use("/api/doctor", doctorRouter);
+app.use(ErrorMiddleware)
 
 
 export default app;
