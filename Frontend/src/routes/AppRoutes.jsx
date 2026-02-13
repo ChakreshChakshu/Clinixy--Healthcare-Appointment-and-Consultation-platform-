@@ -1,6 +1,8 @@
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import { Toaster } from "react-hot-toast";
 
+// Pages ke imports
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import Home from "../pages/landingPage/Home";
@@ -9,18 +11,18 @@ const AppRoutes = () => {
   const location = useLocation();
 
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        
-=        <Route path="/" element={<Home />} />
+    <>
+      {/* Toaster ko yahan rakhna sahi hai taaki notifications har jagah dikhen */}
+      <Toaster position="top-center" reverseOrder={false} />
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-    
-
-        
-      </Routes>
-    </AnimatePresence>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </AnimatePresence>
+    </>
   );
 };
 
