@@ -1,6 +1,7 @@
 import DoctorModel from "../models/Doctor.model.js";
 import PasswordUtils from "../utils/password.js";
 import ClinicModel from "../models/Clinic.model.js";
+import UserModel from "../models/User.model.js";
 
 const doctorService = async (name, email, password, specialization, clinicId, education, discription,experienceYears) => {
 
@@ -19,6 +20,13 @@ const doctorService = async (name, email, password, specialization, clinicId, ed
         discription,
         experienceYears
     });
+     const user = await UserModel.create({
+          name,
+          email,
+          password:hashedPassword,
+          role: "DOCTOR"
+        });
+
     return doctor;
 }
 
@@ -35,3 +43,7 @@ const DoctorService = {
     getClinicIDservice
 }
 export default DoctorService;
+
+
+
+
